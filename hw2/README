@@ -1,0 +1,11 @@
+How to run test:
+
+1. download the model:
+	./download_model.sh
+	After downloading, the model will be saved in ./model
+
+2. run test:
+	./hw2_special.sh $1 $2
+	$1: the data directory, $2: output filename
+
+Note: If you cannot run any shell script, remember to chmod 755
