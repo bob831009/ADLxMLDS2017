@@ -5,6 +5,18 @@ How to run test:
 	After downloading, the model will be saved in ./model
 
 2. run test:
+	/hw2_seq2seq.sh $1 $2 $3
+	$1: the data directory
+	$2: test data output filename
+	$3: peer review output filename
+
+How to run special test:
+
+1. download the model:
+	./download_model.sh
+	After downloading, the model will be saved in ./model
+
+2. run test:
 	./hw2_special.sh $1 $2
 	$1: the data directory, $2: output filename
 
