@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import json
 import numpy as np
 import os
@@ -169,7 +170,12 @@ def preProBuildWordVocab(labels, word_count_threshold=5):
 			for word in cap.lower().split(' '):
 				if(word not in vocabs_count): vocabs_count[word] = 0;
 				vocabs_count[word] += 1;
-	vocab = [w for w in vocabs_count if vocabs_count[w] >= word_count_threshold]
+
+	# ensure word index is same all the times
+	vocab = [];
+	for w in sorted(vocabs_count.keys()):
+		if(vocabs_count[w] >= word_count_threshold):
+			vocab.append(w);
 	print('filtered words from %d to %d' % (len(vocabs_count), len(vocab)));
 
 	ixtoword = {}
@@ -223,7 +229,7 @@ n_video_lstm_step = 80
 n_caption_lstm_step = 20
 n_frame_step = 80
 
-n_epochs = 1000
+n_epochs = 500
 batch_size = 50
 learning_rate = 0.0001
 
@@ -241,7 +247,7 @@ def train():
 		videoId = '%s.npy' % (data['id']);
 		tmp_data = np.load(os.path.join(DATA_PATH, 'training_data', 'feat', videoId));
 		train_data.append(tmp_data);
-	train_data = np.array(train_data);
+	# train_data = np.array(train_data);
 
 	with tf.variable_scope(tf.get_variable_scope()):
 		model = Video_Caption_Generator(
@@ -355,13 +361,13 @@ def test(data_dir, output_file, model_path, special_test=False):
 		'UbmZAe5u5FI_132_141.avi',
 		'JntMAcTlOF0_50_70.avi',
 		'tJHUH9tpqPg_113_118.avi'];
-	
+
 	test_data = [];
 	for test_id in test_ids:
 		videoId = '%s.npy' % (test_id);
 		tmp_data = np.load(os.path.join(data_dir, 'testing_data', 'feat', videoId));
 		test_data.append(tmp_data);
-	test_data = np.array(test_data);
+	# test_data = np.array(test_data);
 
 	with open(os.path.join(data_dir, 'training_label.json')) as f:
 		train_labels = json.load(f);
