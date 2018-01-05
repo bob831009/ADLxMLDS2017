@@ -1,6 +1,6 @@
 How to run test:
 
 1. run test:
-	run.sh [testing_text.txt]
+	./run.sh [testing_text.txt]
 
 Note: If you cannot run any shell script, remember to chmod 755
