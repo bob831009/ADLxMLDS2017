@@ -6,4 +6,4 @@ if ! [ -f "./prepro/img_feat.dat" ]; then
 	wget -O ./prepro/img_feat.dat "https://www.dropbox.com/s/lf24lskd7ofhy2x/img_feat.dat?dl=1"
 fi
 
-python generate.py --test_path $1
+python3.5 generate.py --test_path $1
